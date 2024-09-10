@@ -11,7 +11,7 @@
     opacity: 0.8;
     border-radius: 2rem;
     width: 90%;
-    height: 50%;
+    height: 60%;
 }
 
 .contenedor-boton{
@@ -21,24 +21,25 @@
 }
 
 .contenedor-boton button{
-    margin-top: 2rem;
+    margin-top: 1rem;
     background-color: rgb(62, 139, 255);
     color: white;
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 1rem;
     border-radius: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .contenedor-olvido-password{
     display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 2rem;
+    margin-top: 2rem;
 }
 
-.contenedor-olvido-password p {
-    color: black;
-}
 
 h1{
     color: black;
@@ -49,9 +50,21 @@ h1{
 label{
     color: black;
     font-weight: bold;
+    margin-top:1rem
 }
 
 input{
     background-color: white;
     display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    border-radius: .8rem;
+}
+
+.contenedor-inputs{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
