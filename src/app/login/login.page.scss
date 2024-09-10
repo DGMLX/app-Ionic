@@ -1,0 +1,57 @@
+.contenedor-vista-login{
+    background-image: url(../../assets/fondo.png);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-formulario{
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 2rem;
+    width: 90%;
+    height: 50%;
+}
+
+.contenedor-boton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-boton button{
+    margin-top: 2rem;
+    background-color: rgb(62, 139, 255);
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.contenedor-olvido-password{
+    display: flex;
+}
+
+.contenedor-olvido-password p {
+    color: black;
+}
+
+h1{
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+}
+
+label{
+    color: black;
+    font-weight: bold;
+}
+
+input{
+    background-color: white;
+    display: block;
+}
