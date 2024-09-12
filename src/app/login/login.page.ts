@@ -18,7 +18,6 @@ export class LoginPage implements OnInit {
   user: string = '';
   password: string = '';
 
-
   ngOnInit() {
   }
   onRegisterButtonPressed(){
@@ -30,8 +29,12 @@ export class LoginPage implements OnInit {
   }
 
   onHomeButtonPressed(){
+    
     if(this.sessionManager.performLogin(this.user,this.password)){
       this.router.navigate(['/home-cliente'],{queryParams:{user:this.user}})
+    }
+    if(this.sessionManager.performLoginAdmin(this.user,this.password)){
+      this.router.navigate(['/home-admin'],{queryParams:{user:this.user}})
     }else{
       alert("Las credenciales no son validas")
     }

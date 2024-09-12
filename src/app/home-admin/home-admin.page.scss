@@ -1,0 +1,28 @@
+.contenedor-imagen{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.contenedor-servicio{
+    background-color: gray;
+    width: 90%;
+    height: 2rem;
+    border-radius: 2rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.contenedor-principal{
+
+    margin-top: 2rem;
+}
+
+.logo{
+    width: 30%;
+}
+
+.contenedor-logout{
+    display: flex;
+    justify-content: end;
+}

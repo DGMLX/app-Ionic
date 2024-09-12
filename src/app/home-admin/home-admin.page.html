@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>homeAdmin</ion-title>
-  </ion-toolbar>
-</ion-header>
+<main>
+  <div class="contenedor-logout">
+    <a (click)="onLogoutButtonPressed()">Cerrar sesion</a>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">homeAdmin</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <div class="contenedor-imagen">
+    <img src="../../assets/logo.png" alt="logo" class="logo">
+    <div>
+      <p>Bienvenido</p>
+      <p>{{user}}</p>
+    </div>
+  </div>
+
+  <h1>Servicios</h1>
+  <div class="contenedor-principal">
+    <div class="contenedor-servicio"></div>
+    <div class="contenedor-servicio"></div>
+    <div class="contenedor-servicio"></div>
+    <div class="contenedor-servicio"></div>
+    <div class="contenedor-servicio"></div>
+    <div class="contenedor-servicio"></div>
+  </div>
+
+
+
+
+
+
+
+</main>
