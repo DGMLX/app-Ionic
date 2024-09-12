@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
     if(this.sessionManager.performLogin(this.user,this.password)){
       this.router.navigate(['/home-cliente'],{queryParams:{user:this.user}})
     }
-    if(this.sessionManager.performLoginAdmin(this.user,this.password)){
+    else if(this.sessionManager.performLoginAdmin(this.user,this.password)){
       this.router.navigate(['/home-admin'],{queryParams:{user:this.user}})
     }else{
       alert("Las credenciales no son validas")
