@@ -9,21 +9,25 @@
     width: 10rem;
     height: 8rem;
     border-radius: 2rem;
+    border:1px solid white
 }
 
 .contenedor-principal{
     display: flex;
     justify-content: space-around;
     margin-top: 2rem;
+  
 }
 
 .logo{
-    width: 30%;
+    width: 50%;
 }
 
 .contenedor-logout{
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid rgb(85, 85, 85);
 }
 
 .p-servicio{
@@ -34,3 +38,21 @@
     color: white;
     text-decoration: none;
 }
+
+.boton-nav{
+    margin: 10px;
+    text-decoration: none;
+}
+
+.contenedor-usuario{
+    border: 1px solid rgb(85,85,85);
+    padding: 1.5rem;
+    border-radius: 2rem;
+}
+
+.bienvenido{
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}
+

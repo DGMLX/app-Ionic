@@ -11,6 +11,7 @@
     border-radius: 2rem;
     margin: 0 auto;
     margin-bottom: 2rem;
+  
 }
 
 .contenedor-principal{
@@ -19,15 +20,34 @@
 }
 
 .logo{
-    width: 30%;
+    width: 50%;
 }
 
 .contenedor-logout{
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(85, 85, 85);
+    margin-bottom: 2rem;
 }
 
 .p-servicio{
     text-align: center;
     padding-top: 5px;
+}
+
+.boton-nav{
+    margin: 10px;
+    text-decoration: none;
+}
+
+.contenedor-usuario{
+    border: 1px solid rgb(85,85,85);
+    padding: 1.5rem;
+    border-radius: 2rem;
+}
+
+.bienvenido{
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
 }

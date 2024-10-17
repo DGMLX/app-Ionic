@@ -8,16 +8,17 @@
 
 .contenedor-formulario{
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.9;
     border-radius: 2rem;
     width: 90%;
-    height: 60%;
+    height: auto;
 }
 
 .contenedor-boton{
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .contenedor-boton button{

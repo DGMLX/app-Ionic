@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+    border-bottom: 2px solid rgb(85, 85, 85);
 }
 
 h1{
@@ -9,4 +10,14 @@ h1{
 }
 p{
     text-align: center;
+}
+
+.contenedor-centrar{
+    display: flex;
+    justify-content: center;
+}
+
+.boton-nav{
+    margin: 10px;
+    text-decoration: none;
 }

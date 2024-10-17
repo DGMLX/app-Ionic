@@ -1,17 +1,18 @@
 <main>
   <div class="contenedor-logout">
-    <a (click)="onLogoutButtonPressed()">Cerrar sesion</a>
+    <p style="color:white;margin-left: 10px;">{{user}}</p>
+    <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon></a>
   </div>
 
   <div class="contenedor-imagen">
     <img src="../../assets/logo.png" alt="logo" class="logo">
-    <div>
-      <p>Bienvenido</p>
-      <p>{{user}}</p>
+    <div class="contenedor-usuario">
+      <p class="bienvenido"><ion-icon name="person-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon>Bienvenido</p>
+      <p class="info-usuario">{{user}}</p>
     </div>
   </div>
 
-  <h1>Servicios</h1>
+  <h1 style="text-align: center;">Servicios</h1>
   <div class="contenedor-principal">
     <div class="contenedor-servicio">
       <p class="p-servicio">Ver clientes</p>

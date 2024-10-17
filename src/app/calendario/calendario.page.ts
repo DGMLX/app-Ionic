@@ -17,4 +17,16 @@ export class CalendarioPage implements OnInit {
   onLogoutButtonPressed(){
     this.router.navigate(["/login"])
   }
+
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+
+    /**
+     * Date will be enabled if it is not
+     * Sunday or Saturday
+     */
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
 }
