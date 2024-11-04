@@ -1,30 +1,20 @@
 <main>
   <div class="contenedor-logout">
-    <a href="" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
+    <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
     <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
   </div>
   <div>
     <h1><ion-icon name="calendar-number-outline" style="margin-right: 10px;"></ion-icon>Reserva tu corte </h1>
     <p>Selecciona un día para agendar tu cita.</p>
     <div class="contenedor-centrar">
-      <ion-datetime presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
+      <ion-datetime (ionChange)="onCapturarFecha($event)" presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
     </div>
-    <p>Selecciona una hora</p>
+    <div class="contenedor-centrar">
+      <ion-button (click)="onAgendarDia()" style="color: white;margin-top: 1rem;">Reservar día</ion-button>
+    </div>
+
    
-      <ion-picker>
-        <ion-picker-column value="javascript">
-          <ion-picker-column-option value="" disabled="true">--</ion-picker-column-option>
-          <ion-picker-column-option value="10">10:00</ion-picker-column-option>
-          <ion-picker-column-option value="11">11:00</ion-picker-column-option>
-          <ion-picker-column-option value="12">12:00</ion-picker-column-option>
-          <ion-picker-column-option value="14">14:00</ion-picker-column-option>
-          <ion-picker-column-option value="15">15:00</ion-picker-column-option>
-          <ion-picker-column-option value="16">16:00</ion-picker-column-option>
-        </ion-picker-column>
-      </ion-picker>
-      <div class="contenedor-centrar">
-        <ion-button >Reservar</ion-button>
-      </div>
+      
   </div>
 
 </main>

@@ -1,0 +1,23 @@
+.contenedor-logout{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid rgb(85, 85, 85);
+}
+
+h1{
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+
+.boton-nav{
+    margin: 10px;
+    text-decoration: none;
+}
+
+.contenedor-centrar{
+    display: flex;
+    justify-content: center;
+}

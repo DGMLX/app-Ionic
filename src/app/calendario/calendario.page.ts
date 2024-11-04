@@ -9,6 +9,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class CalendarioPage implements OnInit {
 
+  fecha :string = '';
+
   constructor(private router: Router,
     private route: ActivatedRoute) { }
 
@@ -16,6 +18,18 @@ export class CalendarioPage implements OnInit {
   }
   onLogoutButtonPressed(){
     this.router.navigate(["/login"])
+  }
+
+  onVolverAtras(){
+    this.router.navigate(["/home-cliente"])
+  }
+
+  onAgendarDia(){
+    if(this.fecha === ''){
+      alert("Debes seleccionar una fecha")
+    }else{
+      this.router.navigate(["/seleccionar-hora"])
+    }
   }
 
   isWeekday = (dateString: string) => {
@@ -28,5 +42,15 @@ export class CalendarioPage implements OnInit {
      */
     return utcDay !== 0 && utcDay !== 6;
   };
+
+  onCapturarFecha(event:any){
+    const fechaCapturada = new Date(event.detail.value)
+    const dia = fechaCapturada.getDate()
+    const mes = fechaCapturada.getMonth()
+    const anio = fechaCapturada.getFullYear()
+    const fecha = `${dia}/${mes}/${anio}`
+    this.fecha=fecha
+    console.log(fecha)
+  }
 
 }
