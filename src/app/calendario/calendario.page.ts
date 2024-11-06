@@ -28,7 +28,7 @@ export class CalendarioPage implements OnInit {
     if(this.fecha === ''){
       alert("Debes seleccionar una fecha")
     }else{
-      this.router.navigate(["/seleccionar-hora"])
+      this.router.navigate(["/seleccionar-hora"],{queryParams:{fecha:this.fecha}})
     }
   }
 

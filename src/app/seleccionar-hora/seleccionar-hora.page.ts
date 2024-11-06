@@ -8,11 +8,16 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./seleccionar-hora.page.scss'],
 })
 export class SeleccionarHoraPage implements OnInit {
+  fecha : string = '';
+  hora :string = '';
 
   constructor(private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params=> {
+      this.fecha = params['fecha'] || "";
+  })
   }
   onLogoutButtonPressed(){
     this.router.navigate(["/login"])
@@ -24,5 +29,10 @@ export class SeleccionarHoraPage implements OnInit {
 
   onVolverAtras(){
     this.router.navigate(["/calendario"])
+  }
+
+  onCapturarHora(event:any){
+    this.hora = event.detail.value
+    console.log(this.hora)
   }
 }

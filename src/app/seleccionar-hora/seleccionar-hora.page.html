@@ -5,12 +5,12 @@
   </div>
   <div>
     <h1><ion-icon name="calendar-number-outline" style="margin-right: 10px;"></ion-icon>Reserva tu corte </h1>
-    <p>Selecciona un hora disponible.</p>
+    <p>Selecciona un hora disponible para la fecha {{fecha}}</p>
   </div>
 
   
   <ion-picker>
-    <ion-picker-column value="javascript">
+    <ion-picker-column value="javascript" (ionChange)="onCapturarHora($event)">
       <ion-picker-column-option value="" disabled="true">--</ion-picker-column-option>
       <ion-picker-column-option value="10">10:00</ion-picker-column-option>
       <ion-picker-column-option value="11">11:00</ion-picker-column-option>
