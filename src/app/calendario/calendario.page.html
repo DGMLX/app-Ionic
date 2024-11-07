@@ -4,7 +4,7 @@
     <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
   </div>
   <div>
-    <h1><ion-icon name="calendar-number-outline" style="margin-right: 10px;"></ion-icon>Reserva tu corte </h1>
+    <h1><ion-icon name="calendar-number-outline" style="margin-right: 10px;"></ion-icon>Reserva {{servicio}}</h1>
     <p>Selecciona un día para agendar tu cita.</p>
     <div class="contenedor-centrar">
       <ion-datetime (ionChange)="onCapturarFecha($event)" presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>

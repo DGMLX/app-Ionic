@@ -11,6 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 
 export class HomeClientePage implements OnInit {
   user:string = "";
+  servicio:string = '';
   constructor(private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -23,5 +24,37 @@ export class HomeClientePage implements OnInit {
   onLogoutButtonPressed(){
     this.router.navigate(["/login"])
   }
+
+  onPressDegradadoAdulto(){
+    this.servicio = 'Degradado adulto'
+    this.router.navigate(["/calendario"],{queryParams:{servicio:this.servicio}})
+  }
+
+  onPressPerfiladoBarba(){
+    this.servicio = 'Perfilado Barba'
+    this.router.navigate(["/calendario"],{queryParams:{servicio:this.servicio}})
+  }
+
+  onPressPerfiladoCejas(){
+    this.servicio = 'Perfilado Cejas'
+    this.router.navigate(["/calendario"],{queryParams:{servicio:this.servicio}})
+  }
+
+  onPressTenidoPelo(){
+    this.servicio = 'Teñido Pelo'
+    this.router.navigate(["/calendario"],{queryParams:{servicio:this.servicio}})
+  }
+
+  onPressDegradadoInfantil(){
+    this.servicio = 'Degradado Infantil'
+    this.router.navigate(["/calendario"],{queryParams:{servicio:this.servicio}})
+  }
+
+  onPressPromo(){
+    this.servicio = 'Promocion'
+    this.router.navigate(["/calendario"],{queryParams:{servicio:this.servicio}})
+  }
+
+
 
 }

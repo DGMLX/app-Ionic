@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'seleccionar-hora',
     loadChildren: () => import('./seleccionar-hora/seleccionar-hora.module').then( m => m.SeleccionarHoraPageModule)
   },
+  {
+    path: 'comentarios',
+    loadChildren: () => import('./comentarios/comentarios.module').then( m => m.ComentariosPageModule)
+  },
 
   
   

@@ -4,7 +4,7 @@
     <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon></a>
   </div>
 
-  <div class="contenedor-imagen">
+  <div class="contenedor-info-user">
     <img src="../../assets/logo.png" alt="logo" class="logo">
     <div class="contenedor-usuario">
       <p class="bienvenido"><ion-icon name="person-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon>Bienvenido</p>
@@ -13,15 +13,13 @@
   </div>
   <h1 style="text-align: center;">Servicios</h1>
   <div class="contenedor-principal">
-    <a href="/calendario" class="enlace-servicio">
-      <div class="contenedor-servicio">
-        <img src="../../assets/degradado_adulto.png" alt="logo degradado adulto">
+    <a (click)="onPressDegradadoAdulto()" class="enlace-servicio">
+      <div class="contenedor-servicio contenedor-imagen-degradado">
         <p class="p-servicio">Corte degradado adulto</p>
       </div>
     </a>
-    <a href="/calendario" class="enlace-servicio">
-      <div class="contenedor-servicio">
-        <img src="../../assets/barba.jpg" alt="logo perfilado barba">
+    <a (click)="onPressPerfiladoBarba()" class="enlace-servicio">
+      <div class="contenedor-servicio contenedor-imagen-barba">
         <p class="p-servicio">Perfilado de barba</p>
       </div>
     </a>
@@ -29,15 +27,13 @@
   </div>
 
   <div class="contenedor-principal">
-    <a href="/calendario" class="enlace-servicio">
-      <div class="contenedor-servicio">
-        <img src="../../assets/cejas.jpg" alt="logo perfilado cejas">
+    <a (click)="onPressPerfiladoCejas()" class="enlace-servicio">
+      <div class="contenedor-servicio contenedor-imagen-cejas">
         <p class="p-servicio">Perfilado de cejas</p>
       </div>
     </a>
-    <a href="/calendario" class="enlace-servicio">  
-      <div class="contenedor-servicio">
-        <img src="../../assets//teñido.jpg" alt="logo teñido cabello">
+    <a (click)="onPressTenidoPelo()" class="enlace-servicio">  
+      <div class="contenedor-servicio contenedor-imagen-teñido">
         <p class="p-servicio">Teñido de cabello</p>
       </div>
     </a>
@@ -45,15 +41,13 @@
 
 
   <div class="contenedor-principal">
-    <a href="/calendario" class="enlace-servicio">
-      <div class="contenedor-servicio">
-        <img src="../../assets/corte-infantil.jpg" alt="logo cabello niño">
+    <a (click)="onPressDegradadoInfantil()" class="enlace-servicio">
+      <div class="contenedor-servicio contenedor-imagen-infantil">
         <p class="p-servicio">Corte cabello niño</p>
       </div>
     </a>
-    <a href="/calendario" class="enlace-servicio">
-      <div class="contenedor-servicio">
-        <img src="../../assets/promo.png" alt="logo promocion">
+    <a (click)="onPressPromo()" class="enlace-servicio">
+      <div class="contenedor-servicio contenedor-imagen-promo">
         <p class="p-servicio">Promoción</p>
       </div>
     </a>

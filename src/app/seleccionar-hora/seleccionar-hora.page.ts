@@ -10,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 export class SeleccionarHoraPage implements OnInit {
   fecha : string = '';
   hora :string = '';
+  servicio:string = '';
 
   constructor(private router: Router,
     private route: ActivatedRoute) { }
@@ -17,7 +18,8 @@ export class SeleccionarHoraPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params=> {
       this.fecha = params['fecha'] || "";
-  })
+      this.servicio = params['servicio'] || '';
+    })
   }
   onLogoutButtonPressed(){
     this.router.navigate(["/login"])
@@ -25,6 +27,9 @@ export class SeleccionarHoraPage implements OnInit {
 
   onAgendarServicio(){
     alert("Cita agendada")
+    console.log(this.servicio)
+    console.log(this.fecha)
+    console.log(this.hora)
   }
 
   onVolverAtras(){

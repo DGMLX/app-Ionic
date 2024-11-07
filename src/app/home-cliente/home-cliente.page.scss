@@ -1,7 +1,37 @@
-.contenedor-imagen{
-    display: flex;
-    justify-content: space-around;
+.contenedor-info-user{
+    display:flex;
+    justify-content:center;
+}
 
+.contenedor-imagen-degradado{
+    background-image: url('../../assets/degradado_adulto.png');
+    background-position: center;
+    background-size: cover;
+}
+.contenedor-imagen-cejas{
+    background-image: url('../../assets/cejas.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.contenedor-imagen-teñido{
+    background-image: url('../../assets/teñido.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.contenedor-imagen-barba{
+    background-image: url('../../assets/barba.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.contenedor-imagen-promo{
+    background-image: url('../../assets/promo.png');
+    background-position: center;
+    background-size: cover;
+}
+.contenedor-imagen-infantil{
+    background-image: url('../../assets/corte-infantil.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
 .contenedor-servicio{
@@ -9,7 +39,10 @@
     width: 10rem;
     height: 8rem;
     border-radius: 2rem;
-    border:1px solid white
+    border:1px solid white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contenedor-principal{
@@ -32,6 +65,10 @@
 
 .p-servicio{
     text-align: center;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    padding-top: 2px;
+    padding-bottom: 2px;
+
 }
 
 .enlace-servicio{

@@ -10,11 +10,15 @@ import {ActivatedRoute} from "@angular/router";
 export class CalendarioPage implements OnInit {
 
   fecha :string = '';
+  servicio:string='';
 
   constructor(private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params=> {
+      this.servicio = params['servicio'] || "";
+  })
   }
   onLogoutButtonPressed(){
     this.router.navigate(["/login"])
@@ -28,7 +32,7 @@ export class CalendarioPage implements OnInit {
     if(this.fecha === ''){
       alert("Debes seleccionar una fecha")
     }else{
-      this.router.navigate(["/seleccionar-hora"],{queryParams:{fecha:this.fecha}})
+      this.router.navigate(["/seleccionar-hora"],{queryParams:{fecha:this.fecha,servicio:this.servicio}})
     }
   }
 
