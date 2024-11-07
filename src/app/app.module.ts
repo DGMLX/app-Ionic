@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
@@ -11,7 +10,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import {getAuth, provideAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { provideHttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     
   
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideHttpClient(),
      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
      provideFirestore(() => getFirestore()),
      provideAuth(()=> getAuth())],

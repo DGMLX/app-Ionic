@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionManager } from '../manager/SessionManager';
 import { AuthenticationService } from '../firebase/authentication.service';
 import { Models } from '../models/models';
+// import { StorageService } from 'src/managers/StorageService';
+
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private sessionManager: SessionManager,
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    // private storageService: StorageService
   ) { 
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,7 +47,9 @@ export class LoginPage implements OnInit {
       const { email, password } = this.form.value;
       try {
         await this.authenticationService.logIn(email, password);
-        this.router.navigate(["/home-cliente"]);
+        // await this.storageService.set('userEmail', email)
+        // await this.storageService.set('isSessionActive', true)
+        this.router.navigate(["/home-cliente"],{queryParams:{email:email}});
       } catch (error) {
         console.error('Error during login:', error);
       }
