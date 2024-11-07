@@ -1,28 +1,29 @@
 <main class="contenedor-vista-login">
   <div class="contenedor-formulario">
     <h1>Login</h1>
-    <form>
+    <form [formGroup]="form">
       <div class="contenedor-inputs">
         <div>
           <label>Correo electrónico:</label>
-          <input [(ngModel)]="user" name="user" type="email" placeholder="example@correo.com">
+          <input formControlName="email" type="email" placeholder="example@correo.com">
         </div>
         <div>
           <label>Contraseña:</label>
-          <input [(ngModel)]="password" name="password" type="password" placeholder="***********">
+          <input formControlName="password" type="password" placeholder="***********">
         </div>
-    </div>
-      <div class="contenedor-boton">
-        <button (click)="onHomeButtonPressed()"><ion-icon name="person" style="margin-right: 5px;"></ion-icon>Iniciar sesión</button>
       </div>
+      
+      <div class="contenedor-boton">
+        <button (click)="onHomeButtonPressed()" type="button">
+          <ion-icon name="person" style="margin-right: 5px;"></ion-icon>
+          Iniciar sesión
+        </button>
+      </div>
+
       <div class="contenedor-olvido-password" style="margin-bottom: 1rem;">
         <a (click)="onRecuperarPasswordButtonPressed()" style="margin-bottom: 5px;">Recuperar contraseña</a> 
         <a (click)="onRegisterButtonPressed()">Crear cuenta</a>
       </div>
-        
-      
     </form>
   </div>
-
-
 </main>

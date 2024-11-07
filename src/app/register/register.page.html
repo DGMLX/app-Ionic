@@ -3,38 +3,57 @@
   <div class="contenedor-formulario">
     <h1>Registro</h1>
     <form>
+      
     <div class ="contenedor-inputs">
-      <div>
-        <label>Correo electrónico:</label>
-        <input type="email" placeholder="example@correo.com" style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
-      </div>
-        
-      <div>
-        <label>Nombre:</label>
-        <input type="Nombre" placeholder="Gonzalo"  style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
-      </div>
+      <form [formGroup]="datosForm" (ngSubmit)="registrarse()">
+        <div>
+          <label>Correo electrónico:</label>
+          <input type="email" placeholder="example@correo.com" formControlName="email"  requiered style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+          <div *ngIf="datosForm.get('email')?.invalid && datosForm.get('email')?.touched">
+            <p *ngIf="datosForm.get('email')?.errors?.['required']" style="color: red;">El correo es obligatorio.</p>
+            <p *ngIf="datosForm.get('email')?.errors?.['email']" style="color: red;">El formato de correo no es válido.</p>
+          </div>
+        </div>
+          
+        <div>
+          <label>Nombre:</label>
+          <input type="Nombre" placeholder="Gonzalo" formControlName="nombre" requiered style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+          <div *ngIf="datosForm.get('username')?.invalid && datosForm.get('username')?.touched">
+            <p style="color: red;">El nombre de usuario es obligatorio.</p>
+          </div>
+        </div>
 
-      <div>
-        <label>Contraseña:</label>
-        <input type="password" placeholder="***********"  style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+        <div>
+          <label>Contraseña:</label>
+          <input type="password" placeholder="***********" formControlName="password" requiered style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+        </div>
+
+        <div>
+          <label>Repetir contraseña:</label>
+          <input type="password" placeholder="***********" formControlName="rePassword" requiered style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+        </div>
+      </form>
+    </div>
+    <div class="catch-error" *ngIf="datosForm.get('password')?.invalid && datosForm.get('password')?.touched">
+      <p *ngIf="datosForm.get('password')?.errors?.['required']" style="color: red;">La contraseña es obligatoria.</p>
+      <p *ngIf="datosForm.get('password')?.errors?.['minlength'] && datosForm.get('password')?.errors?.['minlength'].requiredLength === 6" style="color: red;">
+        La contraseña debe tener al menos 6 caracteres.
+      </p>
+      <div class="catch-error" *ngIf="datosForm.hasError('passwordsNoCoinciden') && datosForm.get('rePassword')?.touched">
+        <p style="color: red;">Las contraseñas no coinciden.</p>
       </div>
-
-      <div>
-        <label>Repetir contraseña:</label>
-        <input type="password" placeholder="***********"  style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
-      </div>
-
-
     </div>
       <div class="contenedor-boton">
-        <button>Registrarse</button>
+        <button (click)="registrarse()">Registrarse</button>
       </div>
       <div class="boton-iniciar" style="padding-bottom: 1rem;">
         <a (click)="onLoginButtonPressed()">Iniciar sesion</a>
       </div>
     </form>
   </div>
+  
 
+  
 
 </main>
 

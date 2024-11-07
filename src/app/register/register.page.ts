@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Component, inject, OnInit } from '@angular/core'; 
+import { Router } from "@angular/router";
+import { AuthenticationService } from '../firebase/authentication.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,86 +10,54 @@ import {Router} from "@angular/router";
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private router: Router) { }
+  authenticationService: AuthenticationService = inject(AuthenticationService);
 
-  ngOnInit() {
+  datosForm = this.fb.group(
+    {
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      rePassword: ['', [Validators.required]],
+      nombre: ['', [Validators.required]]
+    },
+    { validators: this.passwordsCoinciden } 
+  );
+
+  cargando: boolean = false;
+
+  constructor(private fb: FormBuilder, private router: Router) { }
+
+  ngOnInit() {}
+
+ 
+  passwordsCoinciden(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const rePassword = form.get('rePassword')?.value;
+    return password === rePassword ? null : { passwordsNoCoinciden: true };
   }
 
-  onLoginButtonPressed(){
-    this.router.navigate(["/login"])
+  async registrarse() {
+    this.cargando = true;
+    console.log('datosForm -> ', this.datosForm);
+
+    if (this.datosForm.valid) {
+      const data = this.datosForm.value;
+      console.log('valid ->', data);
+
+      try {
+        const user = await this.authenticationService.createUser(data.email as string, data.password as string);
+        console.log('user -> ', user);
+        this.router.navigate(['/home-cliente']);
+      } catch (error) {
+        console.log('error al registrarse -> ', error);
+      }
+    } else if (this.datosForm.hasError('passwordsNoCoinciden')) {
+      console.log('Las contraseñas no coinciden');
+    }
+
+    this.cargando = false;
   }
 
-//   async onRegisterButtonPressed() {
-//     try {
-//       const userCredential = await this.sessionManager.registerUserWith(
-//         this.email,
-//         this.password
-//       );
-
-//       const user = userCredential.user;
-
-//       if (user) {
-//         this.alert.showAlert(
-//           'Registro exitoso',                         
-//           'Ya eres parte de nuestro sistema', 
-//           () => {    
-//             this.router.navigate(['/splash']);     
-//           }
-//         )
-//       } else {
-//         alert('¡Registro exitoso!');
-//       }
-
-      
-//       this.router.navigate(['/splash']);
-
-//     } catch (error: any) {
-
-//       switch (error.code) {
-//         case 'auth/email-already-in-use':
-//           this.alert.showAlert(
-//             'Error',                         
-//             'Este correo electrónico ya está en uso. Por favor, utiliza otro o inicia sesión.', 
-//             () => {    
-//               this.clean     
-//             }
-//           )
-//           break
-//         case 'auth/invalid-email':
-//           this.alert.showAlert(
-//             'Error',                         
-//             'La dirección de correo electrónico no es válida.', 
-//             () => {    
-//               this.clean     
-//             }
-//           )
-//           break
-//         case 'auth/weak-password':
-//           this.alert.showAlert(
-//             'Error',                         
-//             'La contraseña es muy débil.', 
-//             () => {    
-//               this.clean     
-//             }
-//           )
-//           break
-//         default:
-//           this.alert.showAlert(
-//             'Error',                         
-//             'Ocurrió un error al registrar el usuario: ' + error.message, 
-//             () => {    
-//               this.clean     
-//             }
-//           )
-//           break
-//       }
-//     }
-//   }
-
-//   clean() {
-//     this.email = ''
-//     this.password = ''
-//   }
-  
-// }
+  onLoginButtonPressed() {
+    this.router.navigate(['/login']);
+  }
 }

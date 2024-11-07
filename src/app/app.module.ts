@@ -9,7 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-
+import {getAuth, provideAuth } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,12 +18,15 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    ReactiveFormsModule
     
   
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-     provideFirestore(() => getFirestore())],
+     provideFirestore(() => getFirestore()),
+     provideAuth(()=> getAuth())],
+     
   bootstrap: [AppComponent],
 })
 export class AppModule {}
