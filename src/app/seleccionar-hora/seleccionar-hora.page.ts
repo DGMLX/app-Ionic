@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ActivatedRoute} from "@angular/router";
+// import {AngularFirestore} from "@angular/fire/compat/firestore"
+
+
 
 @Component({
   selector: 'app-seleccionar-hora',
@@ -11,8 +14,11 @@ export class SeleccionarHoraPage implements OnInit {
   fecha : string = '';
   hora :string = '';
   servicio:string = '';
-  constructor(private router: Router,
-    private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    // private firestore : AngularFirestore
+  ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params=> {
@@ -24,12 +30,27 @@ export class SeleccionarHoraPage implements OnInit {
     this.router.navigate(["/login"])
   }
 
-  onAgendarServicio(){
-    alert("Cita agendada")
-    console.log(this.servicio)
-    console.log(this.fecha)
-    console.log(this.hora)
+  async onAgendarServicio(){
+   
+    const datosReserva = {
+      "servicio":this.servicio,
+      "fecha":this.fecha,
+      "hora":this.hora
+    }
+    if(this.servicio !== '' && this.fecha !== '' && this.hora !== ''){
+      try {
+        alert("Cita agendada")
+        // await this.firestore.collection("reservas").add(datosReserva)
+        console.log(datosReserva)
+        this.router.navigate(['/home-cliente']);
+      } catch (error) {
+        console.log('error al reservar la hora-> ', error);
+      }
+    }else{
+      console.log("faltan datos para reservar el servicio")
+    }
   }
+
 
   onVolverAtras(){
     this.router.navigate(["/calendario"])

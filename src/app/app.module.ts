@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
 import {getAuth, provideAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 @NgModule({
   declarations: [AppComponent],
   imports: [
