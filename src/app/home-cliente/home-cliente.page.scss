@@ -85,6 +85,7 @@
     border: 1px solid rgb(85,85,85);
     padding: 1.5rem;
     border-radius: 2rem;
+  
 }
 
 .bienvenido{
@@ -100,4 +101,25 @@
     border-radius: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+.boton-ubicacion{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 1rem;
+    background: rgb(83, 83, 255);
+}
+
+.boton-foto{
+    border-radius: 1rem;
+    background: rgb(83, 83, 255);
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.imagen-perfil{
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid white;
+    border-radius: 100%;
 }

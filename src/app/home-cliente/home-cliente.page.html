@@ -7,8 +7,12 @@
   <div class="contenedor-info-user">
     <img src="../../assets/logo.png" alt="logo" class="logo">
     <div class="contenedor-usuario">
-      <p class="bienvenido"><ion-icon name="person-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon>Bienvenido</p>
+      <div style="display: flex; justify-content: space-between;">
+        <img class="imagen-perfil" src="../../assets/foto_perfil.jpg" alt="img-perfil">
+        <button class="boton-foto">Cambiar</button>
+      </div>
       <p class="info-usuario">{{email}}</p>
+      <button class="boton-ubicacion" (click)="onPressUbicacion()">Ver ubicación</button>
     </div>
   </div>
   <h1 style="text-align: center;">Servicios</h1>

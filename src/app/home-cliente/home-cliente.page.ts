@@ -68,4 +68,9 @@ export class HomeClientePage implements OnInit {
     this.router.navigate(["/comentarios"])
   }
 
+
+  onPressUbicacion(){
+    this.router.navigate(["/ubicacion"])
+  }
+
 }
