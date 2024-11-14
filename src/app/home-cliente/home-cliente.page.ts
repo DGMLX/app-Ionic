@@ -73,4 +73,8 @@ export class HomeClientePage implements OnInit {
     this.router.navigate(["/ubicacion"])
   }
 
+  onPressProfile(){
+    this.router.navigate(["/profile"])
+  }
+
 }

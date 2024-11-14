@@ -9,7 +9,7 @@
     <div class="contenedor-usuario">
       <div style="display: flex; justify-content: space-between;">
         <img class="imagen-perfil" src="../../assets/foto_perfil.jpg" alt="img-perfil">
-        <button class="boton-foto">Cambiar</button>
+        <button class="boton-foto" (click)="onPressProfile()">Cambiar</button>
       </div>
       <p class="info-usuario">{{email}}</p>
       <button class="boton-ubicacion" (click)="onPressUbicacion()">Ver ubicación</button>

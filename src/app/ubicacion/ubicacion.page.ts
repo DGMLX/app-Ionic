@@ -42,7 +42,7 @@ export class UbicacionPage {
         this.map.remove();
       }
 
-      this.map = L.map('mapId').setView([this.latitude, this.longitude], 6);
+      this.map = L.map('mapId').setView([this.latitude, this.longitude], 15);
 
 
 
