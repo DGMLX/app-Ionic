@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ActivatedRoute} from "@angular/router";
 // import { StorageService } from 'src/managers/StorageService';
+import { SessionManager } from "../../managers/sessionManager";
 
 @Component({
   selector: 'app-home-cliente',
@@ -10,15 +11,21 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class HomeClientePage implements OnInit {
+  userId:any
   email:string = "";
   servicio:string = '';
 
   constructor(private router: Router,
     private route: ActivatedRoute,
+    private authService:SessionManager
     // private storageService: StorageService
   ) { }
   
   ngOnInit() {
+    this.authService.getProfile().then(user=>{
+      this.userId=user?.uid
+      console.log(this.userId)
+    })
     this.route.queryParams.subscribe(params=> {
       this.email = params['email'] || "";
   })
@@ -66,6 +73,10 @@ export class HomeClientePage implements OnInit {
 
   onPressComentarios(){
     this.router.navigate(["/comentarios"])
+  }
+
+  onPressReservas(){
+    this.router.navigate(["/reservas"])
   }
 
 

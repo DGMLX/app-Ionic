@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 
+import {User} from "firebase/auth"
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -38,6 +41,14 @@ export class SessionManager {
     }
     
     async getProfile() {
-        return await this.fireAuth.currentUser
+        return new Promise<User | null>((resolve,reject)=>{
+            this.fireAuth.onAuthStateChanged(user=>{
+                if(user){
+                    resolve(user)
+                }else{
+                    resolve(null)
+                }
+            },reject)
+        })
     }
 }

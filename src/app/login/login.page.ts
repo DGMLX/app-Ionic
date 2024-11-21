@@ -20,6 +20,7 @@ export class LoginPage implements OnInit {
   formModel!: Models.Auth.DatosLogin;
 
   constructor(
+    public formBuilder:FormBuilder,
     private router: Router,
     private sessionManager: SessionManager,
     private fb: FormBuilder,

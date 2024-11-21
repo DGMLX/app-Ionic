@@ -4,6 +4,11 @@
     <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon></a>
   </div>
 
+  <div style="display: flex;justify-content: center;margin-bottom: 10px;">
+    <button class="boton-ubicacion" style="margin-left: 10px;margin-right: 10px;" (click)="onPressComentarios()">Comentarios</button>
+    <button class="boton-ubicacion" style="margin-left: 10px;margin-right: 10px;" (click)="onPressReservas()">Reservas</button>
+  </div>
+
   <div class="contenedor-info-user">
     <img src="../../assets/logo.png" alt="logo" class="logo">
     <div class="contenedor-usuario">
@@ -16,10 +21,6 @@
     </div>
   </div>
   <h1 style="text-align: center;">Servicios</h1>
-
-  <div class="contenedor-comentarios" (click)="onPressComentarios()">
-    <h5>Comentarios</h5>
-  </div>
 
   <div class="contenedor-principal">
     <a (click)="onPressDegradadoAdulto()" class="enlace-servicio">
