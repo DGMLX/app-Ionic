@@ -1,7 +1,7 @@
 
 import {Injectable} from "@angular/core";
 import { SessionManager } from "./sessionManager";
-import {addDoc, collection, Firestore,query,where,collectionData} from "@angular/fire/firestore"
+import {addDoc, collection, Firestore,query,where,collectionData, doc, docData} from "@angular/fire/firestore"
 import { Observable } from "rxjs";
 
 export class Reserva{
@@ -46,6 +46,11 @@ export class ReservasService{
         const reservaRef = collection(this.firestore,"reservas")
         const refquery = query(reservaRef,where("userId","==",userId))
         return collectionData(refquery,{idField:"id"}) as Observable<Reserva[]>
+    }
+
+    obtenerReservaId(id:any) : Observable<Reserva>{
+        const reservaRef = doc(this.firestore,`reservas/${id}`)
+        return docData(reservaRef,{idField:'id'}) as Observable<Reserva>
     }
 
 }
