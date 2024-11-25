@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },  {
+  },
+  {
     path: 'home-cliente',
     loadChildren: () => import('./home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
   },
@@ -61,7 +62,7 @@ const routes: Routes = [
   {
     path: 'reserva',
     loadChildren: () => import('./reserva/reserva.module').then( m => m.ReservaPageModule)
-  },
+  }
 
   
   
