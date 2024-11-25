@@ -1,13 +1,39 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>reserva</ion-title>
+  <ion-toolbar style="display: flex; justify-content: space-between;">
+    <ion-title style="margin-top: 10px;">Reserva</ion-title>
+    <div style="display:flex;justify-content: end;">
+      <button class="boton-editar">Editar</button>
+      <button class="boton-eliminar">Eliminar</button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">reserva</ion-title>
+    <ion-toolbar >
+      <ion-title size="large">Reserva</ion-title>
+      
     </ion-toolbar>
   </ion-header>
+
+  <div *ngIf="reserva" style="margin-top: 15px;">
+
+      <ion-title label="Title" style="text-align: center;"  class="title">{{reserva.servicio}}</ion-title>
+ 
+      <div class="contenedor-centrar" style="margin-top: 15px;">
+        <ion-datetime (ionChange)="onCapturarFecha($event)" presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
+      </div>
+
+      <ion-picker>
+        <ion-picker-column value="javascript" (ionChange)="onCapturarHora($event)">
+          <ion-picker-column-option value="" disabled="true">--</ion-picker-column-option>
+          <ion-picker-column-option value="10">10:00</ion-picker-column-option>
+          <ion-picker-column-option value="11">11:00</ion-picker-column-option>
+          <ion-picker-column-option value="12">12:00</ion-picker-column-option>
+          <ion-picker-column-option value="14">14:00</ion-picker-column-option>
+          <ion-picker-column-option value="15">15:00</ion-picker-column-option>
+          <ion-picker-column-option value="16">16:00</ion-picker-column-option>
+        </ion-picker-column>
+      </ion-picker>
+  </div>
 </ion-content>

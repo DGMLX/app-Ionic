@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SessionManager } from '../../managers/sessionManager';
 import { ReservasService } from 'src/managers/reservaService';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
+import { ReservaPage } from '../reserva/reserva.page';
 
 export class Reserva{
   id?:string;
@@ -43,8 +45,22 @@ export class ReservasPage implements OnInit {
     })
   }
 
-  async abrirModal(){
-    const modal = await this.modalCtrl
+  async abrirReserva(reserva:Reserva){
+    const modal = await this.modalCtrl.create({
+      component:ReservaPage,
+      componentProps:{id:reserva.id},
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.6
+    })
+
+    await modal.present()
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      console.log(ev.detail.data);
+    }
   }
 
 }
