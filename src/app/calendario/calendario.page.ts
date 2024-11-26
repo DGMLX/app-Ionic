@@ -49,7 +49,7 @@ export class CalendarioPage implements OnInit {
   onCapturarFecha(event:any){
     const fechaCapturada = new Date(event.detail.value)
     const dia = fechaCapturada.getDate()
-    const mes = fechaCapturada.getMonth()
+    const mes = fechaCapturada.getMonth() +1
     const anio = fechaCapturada.getFullYear()
     const fecha = `${dia}/${mes}/${anio}`
     this.fecha=fecha

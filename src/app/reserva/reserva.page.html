@@ -19,20 +19,20 @@
   <div *ngIf="reserva" style="margin-top: 15px;">
 
       <ion-title label="Title" style="text-align: center;"  class="title">{{reserva.servicio}}</ion-title>
- 
       <div class="contenedor-centrar" style="margin-top: 15px;">
-        <ion-datetime (ionChange)="onCapturarFecha($event)" presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
+
+        <ion-datetime (ionChange)="onCapturarFecha($event)" value={{fechaReserva}} presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
       </div>
 
       <ion-picker>
-        <ion-picker-column value="javascript" (ionChange)="onCapturarHora($event)">
+        <ion-picker-column value={{horaReservada}} (ionChange)="onCapturarHora($event)">
           <ion-picker-column-option value="" disabled="true">--</ion-picker-column-option>
-          <ion-picker-column-option value="10">10:00</ion-picker-column-option>
-          <ion-picker-column-option value="11">11:00</ion-picker-column-option>
-          <ion-picker-column-option value="12">12:00</ion-picker-column-option>
-          <ion-picker-column-option value="14">14:00</ion-picker-column-option>
-          <ion-picker-column-option value="15">15:00</ion-picker-column-option>
-          <ion-picker-column-option value="16">16:00</ion-picker-column-option>
+          <ion-picker-column-option value="10:00">10:00</ion-picker-column-option>
+          <ion-picker-column-option value="11:00">11:00</ion-picker-column-option>
+          <ion-picker-column-option value="12:00">12:00</ion-picker-column-option>
+          <ion-picker-column-option value="14:00">14:00</ion-picker-column-option>
+          <ion-picker-column-option value="15:00">15:00</ion-picker-column-option>
+          <ion-picker-column-option value="16:00">16:00</ion-picker-column-option>
         </ion-picker-column>
       </ion-picker>
   </div>
