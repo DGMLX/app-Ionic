@@ -13,8 +13,11 @@ export class ReservaPage implements OnInit {
   dia:string
   mes:string
   horaReservada:string
-
+  fecha:string
+  hora:string 
   fechaReserva:string
+
+  reservaActualizada :Reserva
 
   constructor(private reservaService:ReservasService) { }
   ngOnInit() {
@@ -38,12 +41,37 @@ export class ReservaPage implements OnInit {
     })
   }
 
+  onCapturarFecha(event:any){
+    const fechaCapturada = new Date(event.detail.value)
+    const dia = fechaCapturada.getDate()
+    const mes = fechaCapturada.getMonth() +1
+    const anio = fechaCapturada.getFullYear()
+    const fecha = `${dia}/${mes}/${anio}`
+    this.fecha=fecha
+  }
+
+  onCapturarHora(event:any){
+    this.hora = event.detail.value
+  }
+
   actualizarReserva(){
-    this.reservaService.actualizarReserva(this.reserva)
+    console.log(this.fecha)
+    console.log(this.hora)
+ 
+    this.reservaActualizada = {
+      id:this.reserva.id,
+      userId:this.reserva.userId,
+      fecha: this.fecha ? this.fecha : this.reserva.fecha,
+      servicio: this.reserva.servicio,
+      hora: this.hora ? this.hora : this.reserva.hora 
+    }
+    this.reservaService.actualizarReserva(this.reservaActualizada)
+    alert("Editado correctamente")
   }
 
   eliminarReserva(){
     this.reservaService.eliminarReserva(this.id)
+    alert("Eliminado correctamente")
   }
 
 }
