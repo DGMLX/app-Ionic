@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Reserva, ReservasService } from 'src/managers/reservaService';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reserva',
@@ -19,7 +20,7 @@ export class ReservaPage implements OnInit {
 
   reservaActualizada :Reserva
 
-  constructor(private reservaService:ReservasService) { }
+  constructor(private reservaService:ReservasService,private modalCtrl:ModalController) { }
   ngOnInit() {
     console.log(this.id)
     this.reservaService.obtenerReservaId(this.id).subscribe(res=>{
@@ -67,11 +68,13 @@ export class ReservaPage implements OnInit {
     }
     this.reservaService.actualizarReserva(this.reservaActualizada)
     alert("Editado correctamente")
+    this.modalCtrl.dismiss()
   }
 
   eliminarReserva(){
     this.reservaService.eliminarReserva(this.id)
     alert("Eliminado correctamente")
+    this.modalCtrl.dismiss()
   }
 
 }
