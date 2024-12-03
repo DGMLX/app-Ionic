@@ -1,70 +1,58 @@
-import { Injectable } from '@angular/core';
-import { StorageService } from 'src/managers/StorageService';
-import { firstValueFrom } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import {Injectable} from "@angular/core";
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { ActualizacionImagenUseCase } from "src/app/casos_uso/actualizacion_imagen.use-case";
+
 
 @Injectable({
   providedIn: 'root',
 })
-export class UploadUserImageUseCase {
 
-  constructor(
-    private storageService: StorageService,
-    private db: AngularFireDatabase, // Acceso a Realtime Database
-    private storage: AngularFireStorage
-  ) {}
+export class ImagenService{
 
-  async uploadFile(filePath: string, storagePath: string, fileName: string): Promise<string> {
-    try {
-      const storageRef = this.storage.ref(storagePath);
+  constructor(private actualizarImgUseCase:ActualizacionImagenUseCase){}
 
-      // Subimos el archivo
-      const uploadTask = await storageRef.putString(filePath, 'data_url'); // Usando 'data_url' para base64
-
-      // Una vez que la carga finalice, obtenemos la URL de descarga usando firstValueFrom
-      const downloadURL = await firstValueFrom(storageRef.getDownloadURL());
-
-      return downloadURL;
-    } catch (error) {
-      console.error('Error al subir el archivo:', error);
-      throw error;
+  async obtenerImagenCamara(): Promise<{success:boolean,message:string,imageUrl?:string}>{
+    try{
+      const imagen = await Camera.getPhoto({
+        quality:90,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera,
+      });
+      const imageUrl = imagen.dataUrl
+      return this.actualizarImagen(imageUrl)
+      
+    } catch (error){
+      return { success: false, message: 'Error al obtener la imagen de la cámara.' };
     }
   }
 
 
-  async UploadUserImage(imageUrl: string): Promise<{ success: boolean, message: string }> {
+  async obtenerImagenGaleria():Promise<{ success: boolean, message: string, imagenUrl?: string }> {
     try {
-      // Obtiene el usuario almacenado localmente desde StorageService
-      const user = await this.storageService.get('user');
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Photos,
+      });
 
-      if (user && user.uid) {
-        const uid = user.uid;
-
-        // Define la ruta de almacenamiento en Firebase Storage
-        const path = `Users/${uid}/profile-image.jpg`;
-
-        // Sube la imagen a Firebase Storage y obtén la URL de la imagen subida
-        const downloadURL = await this.uploadFile(imageUrl, path, 'profile-image.jpg');
-
-        // Actualiza el nodo del usuario en Realtime Database con la nueva URL de la imagen
-        await this.db.object(`users/${uid}`).update({ photoURL: downloadURL });
-
-        // Actualiza el campo photoURL del usuario en StorageService
-        user.photoURL = downloadURL;
-        await this.storageService.set('user', user);
-
-        // Guarda la URL de la imagen también en el StorageService bajo la clave "UserPhotoURL"
-        await this.storageService.set('UserPhotoURL', downloadURL);
-
-        return { success: true, message: 'Imagen de usuario actualizada con éxito.' };
-
-      } else {
-        return { success: false, message: 'No se encontró el UID del usuario.' };
-      }
-
+      const imageUrl = image.dataUrl;
+      return this.actualizarImagen(imageUrl)
     } catch (error) {
-      return { success: false, message: `Error al subir la imagen: ${error.message}` };
+      return { success: false, message: 'Error al obtener la imagen de la galería.' };
+    }
+
+  }
+
+
+  private async actualizarImagen(imagenUrl:string):Promise<{ success: boolean, message: string, imageUrl?: string }>{
+    const resultadoActualizacion = await this.actualizarImgUseCase.actualizarImgUser(imagenUrl)
+    if (resultadoActualizacion.success) {
+      return { success: true, message: 'Imagen subida con éxito', imageUrl: imagenUrl };
+    } else {
+      return { success: false, message: resultadoActualizacion.message };
     }
   }
+
 }

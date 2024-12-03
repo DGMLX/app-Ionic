@@ -12,6 +12,9 @@
   </ion-header>
   <h1 style="text-align: center;">Edita tu foto de perfil</h1>
   <div class="contenedor-imagen">
-    <img class="imagen" src="../../assets/foto_perfil.jpg" alt="img-perfil">
+    <img class="imagen" [src]="photoURL" alt="img-perfil">
+  </div>
+  <div style="display: flex;justify-content: center;margin-top: 2rem;">
+    <ion-button  (click)="onPressCambiarImg()">Cambiar foto de perfil</ion-button>
   </div>
 </ion-content>

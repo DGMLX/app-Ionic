@@ -44,7 +44,7 @@ export class ReservaPage implements OnInit {
 
   onCapturarFecha(event:any){
     const fechaCapturada = new Date(event.detail.value)
-    const dia = fechaCapturada.getDate()
+    const dia = fechaCapturada.getDate() +1
     const mes = fechaCapturada.getMonth() +1
     const anio = fechaCapturada.getFullYear()
     const fecha = `${dia}/${mes}/${anio}`
