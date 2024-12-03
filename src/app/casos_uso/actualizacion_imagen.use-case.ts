@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { SessionManager } from "src/managers/sessionManager";
-// import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { StorageImgService } from "src/managers/storageImgService";
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { StorageService } from "src/managers/StorageService";
 // import { FirebaseStorageService } from 'src/managers/storage-service';
 
 @Injectable({
@@ -10,11 +12,13 @@ import { SessionManager } from "src/managers/sessionManager";
 export class ActualizacionImagenUseCase{
 
     userId:string
+    user:any
 
     constructor(
         private authService:SessionManager,
-        // private db: AngularFireDatabase,
-        // private firebaseStorageService: FirebaseStorageService
+        private storageImgService : StorageImgService,
+        private db: AngularFireDatabase,
+        private storageService: StorageService
     ){}
 
 
@@ -22,23 +26,26 @@ export class ActualizacionImagenUseCase{
         try {
             this.authService.getProfile().then(async user=>{
                 this.userId=user?.uid
+                this.user=user
                 console.log(this.userId)
                 if(this.userId){
                     const path = `Users/${this.userId}/profile-image.jpg`;
                     console.log(path)
 
-                    // // Sube la imagen a Firebase Storage y obtén la URL de la imagen subida
-                    // const downloadURL = await this.firebaseStorageService.uploadFile(imageUrl, path, 'profile-image.jpg');
+                    
+                    const downloadURL = await this.storageImgService.cargarFile(imageUrl, path, 'profile-image.jpg');
 
-                    // // Actualiza el nodo del usuario en Realtime Database con la nueva URL de la imagen
-                    // await this.db.object(`users/${uid}`).update({ photoURL: downloadURL });
+                    
+                    await this.db.object(`users/${this.userId}`).update({ photoURL: downloadURL });
+
+
 
                     // // Actualiza el campo photoURL del usuario en StorageService
-                    // user.photoURL = downloadURL;
-                    // await this.storageService.set('user', user);
+                    this.user.photoURL = downloadURL;
+                    await this.storageService.set('user', user);
 
                     // // Guarda la URL de la imagen también en el StorageService bajo la clave "UserPhotoURL"
-                    // await this.storageService.set('UserPhotoURL', downloadURL);
+                    await this.storageService.set('UserPhotoURL', downloadURL);
                     return { success: true, message: 'Imagen de usuario actualizada con éxito.' };
                 }else{
                     return { success: false, message: 'No se encontró el UID del usuario.' };
