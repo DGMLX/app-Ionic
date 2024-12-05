@@ -1,4 +1,8 @@
 <ion-header [translucent]="true">
+  <div class="contenedor-logout">
+    <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
+    <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
+  </div>
   <ion-toolbar>
     <ion-title>Ubicación</ion-title>
   </ion-toolbar>

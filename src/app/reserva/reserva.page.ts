@@ -1,12 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Reserva, ReservasService } from 'src/managers/reservaService';
 import { ModalController } from '@ionic/angular';
+import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-reserva',
   templateUrl: './reserva.page.html',
   styleUrls: ['./reserva.page.scss'],
 })
+
 export class ReservaPage implements OnInit {
   @Input() id : string
   reserva : Reserva
@@ -20,7 +23,8 @@ export class ReservaPage implements OnInit {
 
   reservaActualizada :Reserva
 
-  constructor(private reservaService:ReservasService,private modalCtrl:ModalController) { }
+  constructor(private reservaService:ReservasService,private modalCtrl:ModalController,private router: Router,
+    private route: ActivatedRoute) { }
   ngOnInit() {
     console.log(this.id)
     this.reservaService.obtenerReservaId(this.id).subscribe(res=>{
@@ -76,5 +80,14 @@ export class ReservaPage implements OnInit {
     alert("Eliminado correctamente")
     this.modalCtrl.dismiss()
   }
+
+  onLogoutButtonPressed(){
+    this.router.navigate(["/login"])
+  }
+
+  onVolverAtras(){
+    this.router.navigate(["/home-cliente"])
+  }
+
 
 }

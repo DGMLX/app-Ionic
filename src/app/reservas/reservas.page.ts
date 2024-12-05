@@ -4,6 +4,8 @@ import { ReservasService } from 'src/managers/reservaService';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ReservaPage } from '../reserva/reserva.page';
+import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 export class Reserva{
   id?:string;
@@ -12,7 +14,7 @@ export class Reserva{
   servicio: string;
   hora: string;
 
-  constructor(userId:string,fecha:string,servicio:string,hora:string){
+  constructor(userId:string,fecha:string,servicio:string,hora:string,){
       this.userId = userId;
       this.fecha = fecha;
       this.hora = hora;
@@ -32,7 +34,8 @@ export class ReservasPage implements OnInit {
   userId:any
   reservas :Reserva[] = []
 
-  constructor(private authService:SessionManager,private reservaService:ReservasService,private modalCtrl:ModalController) { }
+  constructor(private authService:SessionManager,private reservaService:ReservasService,private modalCtrl:ModalController,private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.authService.getProfile().then(user=>{
@@ -62,5 +65,15 @@ export class ReservasPage implements OnInit {
       console.log(ev.detail.data);
     }
   }
+
+  
+  onLogoutButtonPressed(){
+    this.router.navigate(["/login"])
+  }
+
+  onVolverAtras(){
+    this.router.navigate(["/home-cliente"])
+  }
+
 
 }

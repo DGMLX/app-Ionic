@@ -1,6 +1,8 @@
 import { Component} from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import * as L from 'leaflet';
+import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-ubicacion',
@@ -10,7 +12,8 @@ import * as L from 'leaflet';
 export class UbicacionPage {
 
 
-  constructor() { }
+  constructor(private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -62,4 +65,13 @@ export class UbicacionPage {
       console.error('Error obteniendo la ubicación', error);
     }
   }
+
+  onLogoutButtonPressed(){
+    this.router.navigate(["/login"])
+  }
+
+  onVolverAtras(){
+    this.router.navigate(["/home-cliente"])
+  }
+
 }
