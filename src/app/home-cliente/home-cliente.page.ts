@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {ActivatedRoute} from "@angular/router";
-// import { StorageService } from 'src/managers/StorageService';
+import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { SessionManager } from "../../managers/sessionManager";
+import { UserService } from 'src/managers/UserService';
 
 @Component({
   selector: 'app-home-cliente',
@@ -11,25 +11,33 @@ import { SessionManager } from "../../managers/sessionManager";
 })
 
 export class HomeClientePage implements OnInit {
-  userId:any
-  email:string = "";
-  servicio:string = '';
+  userId: any;
+  email: string = "";
+  photoURL: string = 'assets/foto_perfil.jpg';
+  servicio: string = '';
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private route: ActivatedRoute,
-    private authService:SessionManager
-    // private storageService: StorageService
+    private authService: SessionManager,
+    private userService: UserService
   ) { }
-  
+
   ngOnInit() {
-    this.authService.getProfile().then(user=>{
-      this.userId=user?.uid
-      console.log(this.userId)
-    })
-    this.route.queryParams.subscribe(params=> {
+    this.authService.getProfile().then(user => {
+      this.userId = user?.uid;
+      console.log(this.userId);
+    });
+
+    this.route.queryParams.subscribe(params => {
       this.email = params['email'] || "";
-  })
-    // this.loadData()
+    });
+
+    this.userService.userProfile$.subscribe(profile => {
+      if (profile) {
+        this.photoURL = profile.imageUrl || this.photoURL;
+      }
+    });
   }
   async onLogoutButtonPressed(){
     // await this.storageService.clear()

@@ -16,6 +16,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Storage } from '@ionic/storage-angular';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     
     IonicStorageModule.forRoot(),
     AppRoutingModule,
+    AngularFireDatabaseModule,
     ReactiveFormsModule,
     AngularFireModule,
     AngularFireAuthModule,

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, authState } from '@angular/fire/auth';
-
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,28 +9,43 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
 export class AuthenticationService {
 
   auth: Auth = inject(Auth);
-  authState = authState(this.auth)
+  authState = authState(this.auth);
 
-  constructor() { }
+  // Observable que emite el usuario autenticado
+  user$: Observable<any>;
 
-  async createUser(email: string, password: string,) {
+  constructor() {
+    this.user$ = this.authState.pipe(
+      map(user => {
+        if (user) {
+          return {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL
+          };
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  async createUser(email: string, password: string) {
     const user = await createUserWithEmailAndPassword(this.auth, email, password);
     return user;
   }
 
-  getCurrentUser(){
-    return this.auth.currentUser
+  getCurrentUser() {
+    return this.auth.currentUser;
   }
 
-  async logIn(email: string, password: string){
+  async logIn(email: string, password: string) {
     const user = await signInWithEmailAndPassword(this.auth, email, password);
     return user;
   }
 
-  logOut(){
+  logOut() {
     signOut(this.auth);
   }
-
-
-
 }

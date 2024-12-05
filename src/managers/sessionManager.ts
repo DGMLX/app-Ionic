@@ -12,6 +12,7 @@ import {User} from "firebase/auth"
 })
 
 export class SessionManager {
+    
 
     //agrego constructor
     constructor(public fireAuth: AngularFireAuth) { }

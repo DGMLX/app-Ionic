@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { ImagenService } from 'src/managers/imagenService';
-
+import { UserService } from 'src/managers/UserService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +11,24 @@ import { ImagenService } from 'src/managers/imagenService';
 })
 export class ProfilePage implements OnInit {
 
-  photoURL: string = 'assets/foto_perfil.jpg'
+  photoURL: string = 'assets/foto_perfil.jpg';
+  userProfile: any;
 
-  constructor(  private actionSheetController: ActionSheetController, private imageService:ImagenService) { }
+  constructor(
+    private actionSheetController: ActionSheetController,
+    private imageService: ImagenService,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.userService.userProfile$.subscribe(profile => {
+      if (profile) {
+        this.photoURL = profile.imageUrl || this.photoURL;
+        this.userProfile = profile;
+      }
+    });
   }
-
 
   async onPressCambiarImg() {
     const actionSheet = await this.actionSheetController.create({
@@ -27,7 +39,7 @@ export class ProfilePage implements OnInit {
           icon: 'camera',
           handler: async () => {
             const resultado = await this.imageService.obtenerImagenCamara();
-            this.resultadoActualizacionImg(resultado)
+            this.resultadoActualizacionImg(resultado);
           }
         },
         {
@@ -35,7 +47,7 @@ export class ProfilePage implements OnInit {
           icon: 'image',
           handler: async () => {
             const resultado = await this.imageService.obtenerImagenGaleria();
-            this.resultadoActualizacionImg(resultado)
+            this.resultadoActualizacionImg(resultado);
           },
         },
         {
@@ -49,25 +61,16 @@ export class ProfilePage implements OnInit {
     await actionSheet.present();
   }
 
-  private resultadoActualizacionImg(uploadResult: { success: boolean, message: string, imageUrl?: string }){
-    if (uploadResult.success) {
-      alert("Imagen actualizada")
-      this.photoURL = uploadResult.imageUrl || 'assets/default-avatar.png';
-      // this.alert.showAlert(
-      //   'Imagen Actualizada',
-      //   'Tu imagen de perfil ha sido actualizada con éxito.',
-      //   () => {
-      //     this.photoURL = uploadResult.imageUrl || 'assets/default-avatar.png';
-      //   }
-      // );
+  resultadoActualizacionImg(resultado: { success: boolean, message: string, imageUrl?: string }) {
+    if (resultado.success && resultado.imageUrl) {
+      this.photoURL = resultado.imageUrl;
+      this.userService.updateUserProfileImage(this.photoURL); // Actualizar el perfil del usuario en el servicio
     } else {
-      alert("Error al actualizar imagen")
-      // this.alert.showAlert(
-      //   'Error',
-      //   uploadResult.message,
-      //   () => { }
-      // );
+      console.error('Error al actualizar la imagen:', resultado.message);
     }
   }
 
+  onPressVolverHome() {
+    this.router.navigate(['/home-cliente']);
+  }
 }

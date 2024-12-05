@@ -13,7 +13,7 @@
     <img src="../../assets/logo.png" alt="logo" class="logo">
     <div class="contenedor-usuario">
       <div style="display: flex; justify-content: space-between;">
-        <img class="imagen-perfil" src="../../assets/foto_perfil.jpg" alt="img-perfil">
+        <img class="imagen-perfil" [src]="photoURL" alt="img-perfil">
         <button class="boton-foto" (click)="onPressProfile()">Cambiar</button>
       </div>
       <p class="info-usuario">{{email}}</p>
@@ -33,7 +33,6 @@
         <p class="p-servicio">Perfilado de barba</p>
       </div>
     </a>
-
   </div>
 
   <div class="contenedor-principal">
@@ -49,7 +48,6 @@
     </a>
   </div>
 
-
   <div class="contenedor-principal">
     <a (click)="onPressDegradadoInfantil()" class="enlace-servicio">
       <div class="contenedor-servicio contenedor-imagen-infantil">
@@ -62,9 +60,4 @@
       </div>
     </a>
   </div>
-
-
-
-
-
 </main>
