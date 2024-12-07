@@ -1,19 +1,15 @@
-<ion-header [translucent]="true">
-  <div class="contenedor-logout">
-    <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
-    <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
-  </div>
-  <ion-toolbar>
-    <ion-title>Ubicación</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true" class="ion-padding" style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;"> 
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large" style="text-align: center;">Hpans Barber</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <main>
+    <div class="contenedor-logout">
+      <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
+      <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
+    </div>
+    
+  <h1>Hpans Barber</h1>
+  
+  
+  
   <div id="mapId" style="height: 100vh;width: 100vw"></div>
+</main>
 </ion-content>

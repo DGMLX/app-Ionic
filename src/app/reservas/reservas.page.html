@@ -1,21 +1,14 @@
 
-<ion-header [translucent]="true">
+<main>
+
   <div class="contenedor-logout">
     <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
     <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
   </div>
   
-  <ion-toolbar>
-    <ion-title>Reservas realizadas</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Reservas realizadas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <h1 style="text-align: center;">Reservas realizadas</h1>
 
   <div *ngFor="let reserva of reservas">
     <div style="display:flex;justify-content:space-between;margin-top: 10px;margin-left: 20px;margin-right: 20px;">
@@ -28,6 +21,5 @@
 
   </div>
 
-</ion-content>
-
+</main>
 

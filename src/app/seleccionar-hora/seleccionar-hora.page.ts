@@ -26,6 +26,8 @@ export class SeleccionarHoraPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  
+
     this.authService.getProfile().then(user=>{
       this.userId=user?.uid
       console.log(this.userId)

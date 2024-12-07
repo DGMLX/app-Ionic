@@ -1,16 +1,19 @@
-<main>
+<ion-content>
+
+  <main>
   <div class="contenedor-logout">
     <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
     <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="margin-right: 5px;font-size: 1.5rem;"></ion-icon></a>
   </div>
-
+  
   
     <h1 style="text-align: center;">Listado de comentarios</h1>
 
-  <ion-item *ngFor="let comentario of comentarios">
-    <ion-label>
+  <div *ngFor="let comentario of comentariosNoAPI" class="item-contenedor" style="width: 100%;">
+    <div class="label-contenedor" style="width: 100%;">
       <h2>{{ comentario.nombre }}</h2>
       <p>{{ comentario.comentario }}</p>
-    </ion-label>
-  </ion-item>
+    </div>
+  </div>
 </main>
+</ion-content>

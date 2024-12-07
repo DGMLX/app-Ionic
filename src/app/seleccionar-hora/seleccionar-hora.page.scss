@@ -21,3 +21,20 @@ p{
     display: flex;
     justify-content: center;
 }
+
+main{
+    background-color: black;
+    color: white;
+    height: 100%;
+}
+
+
+
+  ion-picker {
+    --highlight-background: var(--ion-color-dark);
+    --highlight-border-radius: 50px;
+  
+    --fade-background-rgb: var(--ion-color-light-rgb);
+  }
+ 
+  

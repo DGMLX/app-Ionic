@@ -1,20 +1,23 @@
-<main>
-  <div class="contenedor-logout">
-    <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
-    <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
-  </div>
-  <div>
-    <h1><ion-icon name="calendar-number-outline" style="margin-right: 10px;"></ion-icon>Reserva {{servicio}}</h1>
-    <p>Selecciona un día para agendar tu cita.</p>
-    <div class="contenedor-centrar">
-      <ion-datetime (ionChange)="onCapturarFecha($event)" presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
+<ion-content>
+
+  <main>
+    <div class="contenedor-logout">
+      <a (click)="onVolverAtras()" class="boton-nav" ><ion-icon name="arrow-back-circle-outline" style="font-size: 2rem;"></ion-icon></a>
+      <a (click)="onLogoutButtonPressed()" class="boton-nav"><ion-icon name="log-out-outline" style="font-size: 1.5rem;"></ion-icon></a>
     </div>
-    <div class="contenedor-centrar" >
+    <div>
+      <h1><ion-icon name="calendar-number-outline" style="margin-right: 10px;"></ion-icon>Reserva {{servicio}}</h1>
+      <p>Selecciona un día para agendar tu cita.</p>
+      <div class="contenedor-centrar">
+        <ion-datetime (ionChange)="onCapturarFecha($event)" presentation="date" [isDateEnabled]="isWeekday"></ion-datetime>
+      </div>
+      <div class="contenedor-centrar" >
       <ion-button (click)="onAgendarDia()" style="color: white;margin-top: 1rem;">Reservar día</ion-button>
     </div>
-
-   
-      
+    
+    
+    
   </div>
-
+  
 </main>
+</ion-content>
