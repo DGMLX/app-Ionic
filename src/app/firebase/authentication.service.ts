@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,11 +14,16 @@ export class AuthenticationService {
 
   // Observable que emite el usuario autenticado
   user$: Observable<any>;
+  private userProfileSubject = new BehaviorSubject<any>(null);
+  userProfile$ = this.userProfileSubject.asObservable();
 
-  constructor() {
+  constructor(private firestore: AngularFirestore) {
     this.user$ = this.authState.pipe(
       map(user => {
         if (user) {
+          this.firestore.collection('users').doc(user.uid).valueChanges().subscribe(profile => {
+            this.userProfileSubject.next(profile);
+          });
           return {
             uid: user.uid,
             email: user.email,
@@ -47,5 +53,13 @@ export class AuthenticationService {
 
   logOut() {
     signOut(this.auth);
+  }
+
+  updateUserProfileImage(imageUrl: string) {
+    this.user$.subscribe(user => {
+      if (user) {
+        this.firestore.collection('users').doc(user.uid).update({ imageUrl });
+      }
+    });
   }
 }

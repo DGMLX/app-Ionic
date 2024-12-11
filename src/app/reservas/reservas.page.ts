@@ -4,25 +4,23 @@ import { ReservasService } from 'src/managers/reservaService';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ReservaPage } from '../reserva/reserva.page';
-import {Router} from "@angular/router";
-import {ActivatedRoute} from "@angular/router";
+import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
-export class Reserva{
-  id?:string;
-  userId:string;
+export class Reserva {
+  id?: string;
+  userId: string;
   fecha: string;
   servicio: string;
   hora: string;
 
-  constructor(userId:string,fecha:string,servicio:string,hora:string,){
-      this.userId = userId;
-      this.fecha = fecha;
-      this.hora = hora;
-      this.servicio = servicio;
+  constructor(userId: string, fecha: string, servicio: string, hora: string) {
+    this.userId = userId;
+    this.fecha = fecha;
+    this.hora = hora;
+    this.servicio = servicio;
   }
 }
-
-
 
 @Component({
   selector: 'app-reservas',
@@ -31,32 +29,44 @@ export class Reserva{
 })
 
 export class ReservasPage implements OnInit {
-  userId:any
-  reservas :Reserva[] = []
+  userId: any;
+  reservas: Reserva[] = [];
 
-  constructor(private authService:SessionManager,private reservaService:ReservasService,private modalCtrl:ModalController,private router: Router,
-    private route: ActivatedRoute) { }
+  constructor(
+    private authService: SessionManager,
+    private reservaService: ReservasService,
+    private modalCtrl: ModalController,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.authService.getProfile().then(user=>{
-      this.userId=user?.uid
-      console.log(this.userId)
-      this.reservaService.obtenerReserva(this.userId).subscribe(res=>{
-        this.reservas = res
-        console.log(this.reservas)
-      })
-    })
+    this.loadReservas();
   }
 
-  async abrirReserva(reserva:Reserva){
+  async loadReservas() {
+    try {
+      const reservasObservable = await this.reservaService.obtenerReserva();
+      reservasObservable.subscribe(res => {
+        this.reservas = res;
+        console.log(this.reservas);
+      }, error => {
+        console.error('Error al obtener reservas:', error);
+      });
+    } catch (error) {
+      console.error('Error al cargar reservas:', error);
+    }
+  }
+
+  async abrirReserva(reserva: Reserva) {
     const modal = await this.modalCtrl.create({
-      component:ReservaPage,
-      componentProps:{id:reserva.id},
+      component: ReservaPage,
+      componentProps: { id: reserva.id },
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.6
-    })
+    });
 
-    await modal.present()
+    await modal.present();
   }
 
   onWillDismiss(event: Event) {
@@ -66,14 +76,11 @@ export class ReservasPage implements OnInit {
     }
   }
 
-  
-  onLogoutButtonPressed(){
-    this.router.navigate(["/login"])
+  onLogoutButtonPressed() {
+    this.router.navigate(["/login"]);
   }
 
-  onVolverAtras(){
-    this.router.navigate(["/home-cliente"])
+  onVolverAtras() {
+    this.router.navigate(["/home-cliente"]);
   }
-
-
 }

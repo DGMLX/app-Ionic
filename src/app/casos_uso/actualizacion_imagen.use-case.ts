@@ -44,8 +44,12 @@ export class ActualizacionImagenUseCase {
                 console.log('URL de la imagen actualizada en Firestore:', downloadURL);
 
                 // Actualizar el perfil del usuario en el almacenamiento local
-                this.user.photoURL = downloadURL;
-                await this.storageService.set('user', this.user);
+                const updatedUser = { ...this.user, photoURL: downloadURL };
+
+                // Eliminar propiedades no serializables
+                const serializableUser = JSON.parse(JSON.stringify(updatedUser));
+
+                await this.storageService.set('user', serializableUser);
                 await this.storageService.set('UserPhotoURL', downloadURL);
 
                 // Eliminar la imagen anterior si existe
